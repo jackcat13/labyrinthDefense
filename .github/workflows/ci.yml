@@ -1,0 +1,16 @@
+name: CI
+
+on: [push]
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run testing script
+      run: |
+        echo Add other actions to build,
+        echo test, and deploy your project.
+        echo STILL TODO
