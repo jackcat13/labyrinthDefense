@@ -18,13 +18,6 @@ function GameObject(x, y, width, height, speed) {
     this.distance = 0.0;
     this.directionX = 0.0;
     this.directionY = 0.0;
- 
-    this.updateFrame = function(){
-        //Updating the frame index 
-        curFrame = ++curFrame % frameCount; 
-        //Calculating the x coordinate for spritesheet 
-        srcX = curFrame * width; 
-    }
 
     this.changeTargetPosition = function(x, y){
         this.xStart = this.x;
@@ -51,6 +44,14 @@ function GameObject(x, y, width, height, speed) {
                 this.move = false;
             }
         }
+    }
+
+    this.halfWidth = function(){
+        return this.width/2;
+    }
+
+    this.halfHeight = function(){
+        return this.height/2;
     }
 
     this.showInfo = function() {

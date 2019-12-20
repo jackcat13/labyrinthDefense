@@ -13,7 +13,7 @@ function MouseEvents(builder, canvas, objects){
             if(e.button == 0){
                 objects.forEach(object => {
                     var mousePos = getMousePos(canvas, e);
-                    if (mousePos.x >= object.x && mousePos.x <= object.x+object.width && mousePos.y >= object.y && mousePos.y <= object.y+object.height){
+                    if (mousePos.x >= object.x-object.halfWidth() && mousePos.x <= object.x+object.width-object.halfWidth() && mousePos.y >= object.y-object.halfHeight() && mousePos.y <= object.y+object.height-object.halfHeight()){
                         object.focus = true;
                     } else{
                         object.focus = false;

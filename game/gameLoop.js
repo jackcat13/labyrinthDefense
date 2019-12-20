@@ -1,4 +1,5 @@
 const FOCUS_MARGIN = 5
+const BACKGROUND_IMAGE = "game/assets/background.png"
 
 function GameLoop(canvas, ctx, gameWidth, gameHeight){
 
@@ -11,6 +12,10 @@ function GameLoop(canvas, ctx, gameWidth, gameHeight){
     this.builder = new Builder(50, 50, 30, 30);
     this.objects.push(this.builder);
     this.mouseEvents = new MouseEvents(this.builder, this.canvas, this.objects);
+    this.particleManager = new ParticleManager(this.ctx);
+
+    var backroundImage = new Image();
+    backroundImage.src = BACKGROUND_IMAGE;
 
     this.loop = function() {
    
@@ -30,17 +35,21 @@ function GameLoop(canvas, ctx, gameWidth, gameHeight){
 
     this.draw = function(){
         this.objects.forEach(object => {
-            this.ctx.drawImage(object.image, object.x, object.y, object.width, object.height)
+            this.ctx.drawImage(object.image, object.x-object.halfWidth(), object.y-object.halfHeight(), object.width, object.height)
             if (object.focus){
                 this.ctx.strokeStyle = "#4EDC5B";
-                this.ctx.strokeRect(object.x-FOCUS_MARGIN, object.y-FOCUS_MARGIN, object.width+(FOCUS_MARGIN*2), object.height+(FOCUS_MARGIN*2));
+                this.ctx.strokeRect(object.x-FOCUS_MARGIN-object.halfWidth(), object.y-FOCUS_MARGIN-object.halfHeight(), object.width+(FOCUS_MARGIN*2), object.height+(FOCUS_MARGIN*2));
+            }
+            if (object instanceof Builder){
+                this.particleManager.createExplosion(object.x-object.halfWidth()+5, object.y+object.height-object.halfHeight(), 5, 2, 10, 10, 0);
+                this.particleManager.createExplosion(object.x-object.halfWidth()+object.width-5, object.y+object.height-object.halfHeight(), 5, 2, 10, 10, 0);
+                this.particleManager.draw();
             }
         });
     }
 
     this.update = function(){
-        this.ctx.fillStyle = "#A2C4F5";
-        this.ctx.fillRect(0, 0, this.gameWidth, this.gameHeight);
+        this.ctx.drawImage(backroundImage, 0, 0, this.gameWidth, this.gameHeight);
         this.mouseEvents.processRightClickEvent();
         this.objects.forEach(object => {
             object.processMovement();
