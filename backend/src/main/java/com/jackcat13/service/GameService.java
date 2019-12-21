@@ -2,6 +2,7 @@ package com.jackcat13.service;
 
 import com.jackcat13.dto.GameCreateDto;
 import com.jackcat13.entities.Game;
+import com.jackcat13.transformer.GameEntityDtoTransformer;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -16,11 +17,10 @@ public class GameService {
     EntityManager em;
 
     @Transactional
-    public void createGame(GameCreateDto gameDto){
-        Game game = new Game();
-        game.setGameId(gameDto.getGameId());
-        game.setGameLabel(gameDto.getGameLabel());
-        em.persist(game);
+    public Game createGame(GameCreateDto gameDto){
+        Game gameEntity = GameEntityDtoTransformer.transformGameCreateDtoToGameEntity(gameDto);
+        em.persist(gameEntity);
+        return gameEntity;
     }
 
     public List<Game> availableGames(){
