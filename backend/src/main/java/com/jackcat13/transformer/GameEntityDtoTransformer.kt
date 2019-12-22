@@ -9,5 +9,6 @@ fun transformGameCreateDtoToGameEntity(gameCreateDto: GameCreateDto): Game {
     val gameEntity = Game()
     gameEntity.gameId = gameCreateDto.gameId
     gameEntity.gameLabel = gameCreateDto.gameLabel
+    gameEntity.isGameStarted = gameCreateDto.isGameStarted
     return gameEntity
 }

@@ -22,7 +22,7 @@ public class PlayerService {
         return playerEntity;
     }
 
-    public Player authenticate(String playerId){
-        return Player.findPlayer(playerId);
+    public Player authenticate(String username){
+        return Player.findPlayer(username);
     }
 }

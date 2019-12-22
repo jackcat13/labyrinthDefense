@@ -12,23 +12,12 @@ import java.util.List;
 @Entity
 @RegisterForReflection
 public class Game extends PanacheEntity {
-
-    private Long id;
     private String gameId;
     private String gameLabel;
+    private Boolean isGameStarted;
 
     public static List<Game> findGames(){
         return findAll().list();
-    }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="giftSeq")
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getGameLabel() {
@@ -39,11 +28,20 @@ public class Game extends PanacheEntity {
         this.gameLabel = name;
     }
 
+    @Id
     public String getGameId() {
         return gameId;
     }
 
     public void setGameId(String gameId) {
         this.gameId = gameId;
+    }
+
+    public boolean isGameStarted() {
+        return isGameStarted;
+    }
+
+    public void setGameStarted(boolean gameStarted) {
+        isGameStarted = gameStarted;
     }
 }

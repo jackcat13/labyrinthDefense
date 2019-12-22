@@ -10,3 +10,31 @@ body {
     margin-bottom: 1rem;
     display: block;
  }
+
+ #GameDiv, #GameCanvas{
+    visibility: hidden;
+ }
+
+ #login{
+    position: fixed;
+    background: #3564C3;
+    height: 200px;
+    width: 400px;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -200px;
+    padding: 20px;
+    border-radius: 4px;
+ }
+
+ #discordButton{
+    background: #6935C3;
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px;
+    top: 50px;
+    border-radius: 4px;
+    color: white;
+ }

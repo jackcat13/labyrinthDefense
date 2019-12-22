@@ -14,7 +14,7 @@ class PlayerResource() {
     lateinit var playerService: PlayerService;
 
     @GET
-    fun authenticate(@QueryParam("playerId") playerId: String) = Response.ok(playerService.authenticate(playerId)).build()
+    fun authenticate(@QueryParam("username") username: String) = Response.ok(playerService.authenticate(username)).build()
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)

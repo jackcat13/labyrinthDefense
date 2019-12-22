@@ -48,8 +48,11 @@ function StartGame(){
 }
  
 window.addEventListener('load', function() {
-    checkAccessToken(getQueryString("code"));
-    StartGame();
+    var code = getQueryString("code");
+    if (code !=null){ 
+        checkAccessToken(code);
+        //StartGame(); change to start game once it is joined
+    }
 }, true);
 
 var getQueryString = function ( field, url ) {
@@ -58,20 +61,3 @@ var getQueryString = function ( field, url ) {
 	var string = reg.exec(href);
 	return string ? string[1] : null;
 };
-
-var checkAccessToken = function(code){
-    var cookieToken = readCookie(LABYRINTH_COOKIE);
-    var refreshedCookie = readCookie(DISCORD_REFRESHED_TOKEN);
-    eraseCookie(LABYRINTH_COOKIE);
-    eraseCookie(DISCORD_REFRESHED_TOKEN);
-    if(code != null){
-        if (cookieToken == null){
-            postTokenAccess(DISCORD_TOKEN_API_PATH, code);
-        } else {
-            if (refreshedCookie != null && refreshedCookie != ""){
-                code = refreshedCookie;
-            }
-            postRefreshTokenAccess(DISCORD_TOKEN_API_PATH, code);
-        }
-    }
-}
