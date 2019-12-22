@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <title>Labyrinth defense</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script language="javascript" src="game/jquery-3.4.1.min.js"></script>
+    <script language="javascript" src="game/gameForm.js" ></script>
+    <script language="javascript" src="game/cookies.js" ></script>
+    <script language="javascript" src="game/gameObject.js" ></script>
+    <script language="javascript" src="game/particleManager.js" ></script>
+    <script language="javascript" src="game/objects/builder.js" ></script>
+    <script language="javascript" src="game/mouseEvents.js" ></script>
+    <script language="javascript" src="game/gameLoop.js" ></script>
+    <script language="javascript" src="game/game.js" ></script>
+    <script language="javascript" src="game/polyphill.js" ></script>
+    <link href="./style.css" rel="stylesheet" type="text/css" media="all">
+</head>
+<body>
+    <div id="GameDiv" >
+        <div id="gameListAndFormDiv">
+            <div id="gameForm">
+                <label for="gameId">Enter your game identifier: </label>
+                <input type="text" name="gameId" id="gameId" required>
+                <label for="gameLabel">Extra information: </label>
+                <input type="text" name="gameLabel" id="gameLabel">
+                <input type="submit" value="Create game" id="createGameButton">
+            </div>
+            <h1>List of available games:</h1>
+            <div id="gameList"></div>
+        </div>
+        <canvas id="GameCanvas" >
+            Votre navigateur ne supporte pas l'élément Html5 Canvas
+            Your browser doesn't support HTML 5 Canvas element
+        </canvas>
+        <div>Connected user: <div id="connectedUser"></div></div>
+    </div>
+</body>
+</html>
